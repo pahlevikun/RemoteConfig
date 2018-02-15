@@ -14,10 +14,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-    }
-
-    override fun onPostResume() {
-        super.onPostResume()
         val remoteConfig = FirebaseRemoteConfig.getInstance()
         val remoteConfigSettings = FirebaseRemoteConfigSettings.Builder().build()
 
@@ -34,5 +30,9 @@ class MainActivity : AppCompatActivity() {
                         Toast.makeText(this@MainActivity, "Fetch Failed", Toast.LENGTH_SHORT).show()
                     }
                 })
+
+        buttonRecreate.setOnClickListener {
+            recreate()
+        }
     }
 }
