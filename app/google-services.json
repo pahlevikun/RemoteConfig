@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "736404075569",
+    "firebase_url": "https://test-project-b0687.firebaseio.com",
+    "project_id": "test-project-b0687",
+    "storage_bucket": "test-project-b0687.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:736404075569:android:6d98153f52c149df",
+        "android_client_info": {
+          "package_name": "com.deggan.remoteconfig"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "736404075569-qgd7m5o778mm4vpoqanl6cj4mmgub1fg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0TcZTODF-9tlx_IytpEvVBojUOsHOwdc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
