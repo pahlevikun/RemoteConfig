@@ -1,10 +1,12 @@
 package com.deggan.remoteconfig
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import android.widget.Toast
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
-import java.util.*
+import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -12,14 +14,25 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+    }
+
+    override fun onPostResume() {
+        super.onPostResume()
         val remoteConfig = FirebaseRemoteConfig.getInstance()
         val remoteConfigSettings = FirebaseRemoteConfigSettings.Builder().build()
 
         remoteConfig.setConfigSettings(remoteConfigSettings)
-
-        var configMap = HashMap<String,String>()
-        configMap["deggan_end_point"] = "https://deggan.com"
-        configMap["deggan_app_version"] = "1"
-        configMap["deggan_app_message"] = "Hai Dunia!"
+        remoteConfig.fetch(0)
+                .addOnCompleteListener(this, { task ->
+                    if (task.isSuccessful) {
+                        Toast.makeText(this@MainActivity, "Fetch Succeeded", Toast.LENGTH_SHORT).show()
+                        remoteConfig.activateFetched()
+                        textViewEnd.text = remoteConfig.getString("deggan_end_point")
+                        textViewMessage.text = remoteConfig.getString("deggan_app_message")
+                        textViewVersion.text = remoteConfig.getLong("deggan_app_version").toString()
+                    } else {
+                        Toast.makeText(this@MainActivity, "Fetch Failed", Toast.LENGTH_SHORT).show()
+                    }
+                })
     }
 }
